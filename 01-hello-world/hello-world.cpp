@@ -2,42 +2,38 @@
 #include <iostream>
 #include <regex>
 
-using namespace std;
-// All OpenCV classes and functions are in this namespace.
-using namespace cv;
-
-int main(int argc, char const *argv[]) {
+int main() {
     // Getting compile time version.
     // The most cross-version method is to use only this "old style" macros.
-    cout << "Compile-time:" << endl;
-    cout << "\tOpenCV version   : " << CV_VERSION << endl;
-    cout << "\tMajor version    : " << CV_MAJOR_VERSION << endl;
-    cout << "\tMinor version    : " << CV_MINOR_VERSION << endl;
-    cout << "\tSubminor version : " << CV_SUBMINOR_VERSION << endl;
-    cout << endl;
+    std::cout << "Compile-time:" << std::endl;
+    std::cout << "\tOpenCV version   : " << CV_VERSION << std::endl;
+    std::cout << "\tMajor version    : " << CV_MAJOR_VERSION << std::endl;
+    std::cout << "\tMinor version    : " << CV_MINOR_VERSION << std::endl;
+    std::cout << "\tSubminor version : " << CV_SUBMINOR_VERSION << std::endl;
+    std::cout << std::endl;
 
     // Getting run time version.
     // Versions prior to 3.4.2 don't have such functions.
     // That's how we check that the compile-time version is greater then "3.4.2".
-    cout << "Run-time:" << endl;
+    std::cout << "Run-time:" << std::endl;
 #if (CV_MAJOR_VERSION >= 3 && CV_MINOR_VERSION >= 4 && CV_SUBMINOR_VERSION >= 2) || \
     (CV_MAJOR_VERSION >= 3 && CV_MINOR_VERSION >= 5) || \
     (CV_MAJOR_VERSION >= 4)
 
-    cout << "\tOpenCV version   : " << getVersionString() << endl;
-    cout << "\tMajor version    : " << getVersionMajor() << endl;
-    cout << "\tMinor version    : " << getVersionMinor() << endl;
-    cout << "\tRevision version : " << getVersionRevision() << endl;
+    std::cout << "\tOpenCV version   : " << cv::getVersionString() << std::endl;
+    std::cout << "\tMajor version    : " << cv::getVersionMajor() << std::endl;
+    std::cout << "\tMinor version    : " << cv::getVersionMinor() << std::endl;
+    std::cout << "\tRevision version : " << cv::getVersionRevision() << std::endl;
 #else
-    cout << "\tNo such functions in this version of library" << endl;
+    std::cout << "\tNo such functions in this version of library" << std::endl;
 #endif
-    cout << endl;
+    std::cout << std::endl;
 
     // Getting build information.
-    cout << "Build information:" << endl;
-    const string& build_information = getBuildInformation();
+    std::cout << "Build information:" << std::endl;
+    const std::string& build_information = cv::getBuildInformation();
     // Beautify the string a bit using regexp.
-    cout << regex_replace(build_information, regex("\n"), "\n\t") << endl;
+    std::cout << regex_replace(build_information, std::regex("\n"), "\n\t") << std::endl;
 
     return 0;
 }
