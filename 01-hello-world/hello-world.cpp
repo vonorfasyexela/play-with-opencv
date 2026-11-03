@@ -6,8 +6,7 @@ using namespace std;
 // All OpenCV classes and functions are in this namespace.
 using namespace cv;
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     // Getting compile time version.
     // The most cross-version method is to use only this "old style" macros.
     cout << "Compile-time:" << endl;
